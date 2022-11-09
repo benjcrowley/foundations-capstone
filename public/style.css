@@ -1,0 +1,148 @@
+#left1 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    left: 175px;
+    top: 160px;
+    
+    background: #343434;
+    border-radius: 10px;
+}
+#middle1 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    left: 384px;
+    top: 160px;
+    
+    background: #19B6FA;
+    border-radius: 10px;
+}
+#right1 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    left: 593px;
+    top: 160px;
+    
+    background: #343434;
+    border-radius: 10px;
+}
+#left2 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    left: 175px;
+    top: 369px;
+    
+    background: #19B6FA;
+    border-radius: 10px;
+}
+#middle2 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    left: 384px;
+    top: 369px;
+    
+    background: #343434;
+    border-radius: 10px;
+}
+#right2 {
+    position: absolute;
+width: 200px;
+height: 200px;
+left: 593px;
+top: 369px;
+
+background: #0177A9;
+border-radius: 10px;
+}
+#left3 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    left: 175px;
+    top: 578px;
+    
+    background: #343434;
+    border-radius: 10px;
+}
+#middle3 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    left: 384px;
+    top: 578px;
+    
+    background: #0177A9;
+    border-radius: 10px;
+}
+#right3 {
+    position: absolute;
+width: 200px;
+height: 200px;
+left: 593px;
+top: 578px;
+
+background: #343434;
+border-radius: 10px;
+}
+
+
+hr {
+    position: absolute;
+width: 900px;
+height: 0px;
+left: 600px;
+top: 796px;
+
+border: 1px solid #000000;
+transform: rotate(-90deg);
+}
+
+fieldset {
+    position: absolute;
+width: 109px;
+height: 59px;
+left: 30px;
+top: 88px;
+
+background: #D9D9D9;
+}
+h1{
+    position: absolute;
+width: 482px;
+height: 68px;
+left: 275px;
+top: 32px;
+
+font-family: 'Raleway';
+font-style: normal;
+font-weight: 400;
+font-size: 64px;
+line-height: 75px;
+
+color: #000000;
+
+}
+.leader-board {
+    display: grid;
+
+/* position: absolute; */
+width: 122px;
+height: 47px;
+/* left: 975px;
+top: 124px; */
+
+font-family: 'Raleway';
+font-style: normal;
+font-weight: 400;
+font-size: 32px;
+line-height: 47px;
+
+
+
+color: #000000;
+
+}
