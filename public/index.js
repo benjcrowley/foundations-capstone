@@ -11,15 +11,19 @@ const tic8 = document.getElementById('right2')
 const tic9 = document.getElementById('right3')
 
 let pickedSqures = []
-
+let chosen = []
 let playerTurn = null
+let XwinCount = 0
+let OwinCount = 0
 function markX(e) {
-    // pickedSqures.push(event.target)
+
+
     if(playerTurn === true){
 
-        if (pickedSqures.includes(e.target.id)){
+        if (chosen.includes(e.target.id)){
             alert('that square is already chosen')
         } else{
+            chosen.push(e.target.id)
             pickedSqures.push([e.target.id, 'X'])
             e.target.innerHTML = 'X'
             playerTurn = false
@@ -29,9 +33,10 @@ function markX(e) {
         }
     } else if(playerTurn === false) {
         
-        if (pickedSqures.includes(e.target.id)){
+        if (chosen.includes(e.target.id)){
             alert('that square is already chosen')
         } else{
+            chosen.push(e.target.id)
             pickedSqures.push([e.target.id, 'O'])
             e.target.innerHTML = 'O'
             playerTurn = true
@@ -42,13 +47,30 @@ function markX(e) {
     
     
 
-    checkWinner()
-
+    winner = checkWinner()
+    // console.log(winner)
+    if (winner === "X") {
+        XwinCount++
+        OwinCount = 0
+        setTimeout(function() { alert(`${winner} won this round`); }, 300); 
+        setTimeout(function() {startTicTacToeGame()}, 2000)
+    } else if(winner === "O"){
+        OwinCount++
+        XwinCount = 0
+        setTimeout(function() { alert(`${winner} won this round`); }, 300);
+        setTimeout(function() {startTicTacToeGame()}, 2000)
+    } else if (winner === 'draw') {
+        XwinCount = 0
+        OwinCount = 0
+        setTimeout(function() { alert(`it was a draw, reset the scores`); }, 300);
+        setTimeout(function() {startTicTacToeGame()}, 2000)
+    }
+    console.log(`X Win streak: ${XwinCount}`)
+    console.log(`O Win streak: ${OwinCount}`)
 }
 
 
 for (let i = 0; i < ticSquare.children.length; i++) {
-    console.log('made it')
     for (let k = 0; k < ticSquare.children[i].children.length; k++) {
             ticSquare.children[i].children[k].addEventListener('click', markX)  
     }
@@ -57,8 +79,9 @@ for (let i = 0; i < ticSquare.children.length; i++) {
 function startTicTacToeGame () {
     playerTurn = true
     let mark = 'X'
-    console.log(`${mark} starts the game`)
+    // console.log(`${mark} starts the game`)
     pickedSqures = []
+    chosen = []
 
     tic1.style.backgroundColor = 'grey'
     tic2.style.backgroundColor = 'grey'
@@ -85,32 +108,34 @@ function checkWinner() {
     let gameBoard = ["left1","middle1","right1",
                     "left2","middle2","right2",
                     "left3","middle3","right3"]
-    console.log(pickedSqures)
+    // console.log(pickedSqures)
     for (let i = 0; i < pickedSqures.length; i++){
-        console.log(pickedSqures[i])
+        // console.log(pickedSqures[i])
         let index = gameBoard.indexOf(pickedSqures[i][0])
-        console.log(index, pickedSqures[i][1])
+        // console.log(index, pickedSqures[i][1])
 
         gameBoard[index] = pickedSqures[i][1]
     
     }
-    console.log(gameBoard)
+    // console.log(gameBoard)
     if (gameBoard[0] === gameBoard[1] && gameBoard[0] === gameBoard[2]) {
-        return ( gameBoard[0] + " won the game")
+        return ( gameBoard[0])
     }else if (gameBoard[3] === gameBoard[4] && gameBoard[3] === gameBoard[5]) {
-        return (gameBoard[3] + "won the game")
+        return (gameBoard[3])
     }else if (gameBoard[6] === gameBoard[7] && gameBoard[6] === gameBoard[8]) {
-        return (gameBoard[6] + "won the game")
+        return (gameBoard[6])
     }else if (gameBoard[0] === gameBoard[3] && gameBoard[0] === gameBoard[6]) {
-        return (gameBoard[0] + "won the game")
+        return (gameBoard[0])
     }else if (gameBoard[1] === gameBoard[4] && gameBoard[1] === gameBoard[7]) {
-        return (gameBoard[1] + "won the game")
+        return (gameBoard[1])
     }else if (gameBoard[2] === gameBoard[5] && gameBoard[2] === gameBoard[8]) {
-        return (gameBoard[2] + "won the game")
+        return (gameBoard[2])
     }else if (gameBoard[0] === gameBoard[4] && gameBoard[0] === gameBoard[8]) {
-        return (gameBoard[0] + "won the game")
+        return (gameBoard[0])
     }else if (gameBoard[2] === gameBoard[4] && gameBoard[2] === gameBoard[6]) {
-        return (gameBoard[2] + "won the game")
+        return (gameBoard[2])
+    }else if (pickedSqures.length === 9){
+        return ('draw')
     }
     console.log('-------- next game ------')
 }
