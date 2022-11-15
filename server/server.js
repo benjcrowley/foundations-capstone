@@ -27,9 +27,7 @@ app.get('/styles', (req,res) => {
 app.get('/', (req,res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'))
 })
-app.get('/popupStyle', (req,res) => {
-    res.sendFile(path.join(__dirname, '../public/popupStyle.css'))
-})
+
 
 
 app.get('/scores', getHighScores)
