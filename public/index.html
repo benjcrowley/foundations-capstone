@@ -29,7 +29,13 @@
                 <label for="O">O</label>        
         </div>
     </fieldset> -->
-    <time>11:11 make a wish</time>
+    <time>11:11 make a wish for your little sister</time>
+    <form class="username">
+        <label for="initials">ENTER YOUR INITIALS:</label>
+        <input type="text" id="initials" name="initials" maxlength="3">
+        <button>Submit</button>
+    </form>
+    <aside class="scores-list"></aside>
     <section>
 
         <table class="game-board">
@@ -51,7 +57,11 @@
         </table>
     </section>
     <button class="start">START</button>
-    
+    <!-- <button id="popup" onclick="div_show()">USERNAME</button> -->
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/js"></script>
 </body>
 </html>

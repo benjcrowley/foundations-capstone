@@ -2,6 +2,18 @@ const express = require('express')
 const path = require('path')
 const app = express()
 const cors = require('cors')
+const Sequelize = require('sequelize')
+require('dotenv').config()
+const { getHighScores, newHighScore} = require('./controller.js')
+const CONNECTION_STRING = process.env.CONNECTION_STRING
+const sequelize = new Sequelize(CONNECTION_STRING, {
+    dialect: 'postgres',
+    dialectOptions: {
+        ssl: {
+            rejectUnauthorized: false
+        }
+    }
+})
 
 app.use(express.json())
 
@@ -15,6 +27,13 @@ app.get('/styles', (req,res) => {
 app.get('/', (req,res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'))
 })
+app.get('/popupStyle', (req,res) => {
+    res.sendFile(path.join(__dirname, '../public/popupStyle.css'))
+})
+
+
+app.get('/scores', getHighScores)
+app.post('/scores', newHighScore)
 
 const PORT = process.env.PORT || 4020
 
