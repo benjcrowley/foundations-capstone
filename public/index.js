@@ -84,6 +84,8 @@ function markX(e) {
             if (winner === "X") {
                 XwinCount++
                 OwinCount = 0
+                console.log(`win count is: ${XwinCount}`)
+                document.getElementsByTagName('h2').innerHTML = `<h2>${username} ... ${XwinCount} </h2>`
                 setTimeout(function() { alert(`${winner} won this round`); }, 300); 
                 setTimeout(function() {startTicTacToeGame()}, 2000)
             } else if (winner === 'draw') {
@@ -113,7 +115,7 @@ function markX(e) {
 
             pickedSqures.push([possibleMoves[choice], 'O'])
             //console.log(pickedSqures)
-            console.log(` picked squares so far: ${pickedSqures}   `)
+            // console.log(` picked squares so far: ${pickedSqures}   `)
 
             oChosenSquare = document.getElementById(possibleMoves[choice])
             //console.log(oChosenSquare)
@@ -150,13 +152,13 @@ function checkWinner() {
                     "left3","middle3","right3"]
 
     //every time checkwinner runs, this for loop will replace the game board spots with either x or o (based on what the picked squares array has)
-    console.log(`picked squares length ${pickedSqures.length}`)
+    // console.log(`picked squares length ${pickedSqures.length}`)
     for (let i = 0; i < pickedSqures.length; i++){
         let index = gameBoard.indexOf(pickedSqures[i][0])
         gameBoard[index] = pickedSqures[i][1]
     }
-    console.log('current game board:')
-    console.log(gameBoard)
+    // console.log('current game board:')
+    // console.log(gameBoard)
 
     // check to see if anyone won
     if (gameBoard[0] === gameBoard[1] && gameBoard[0] === gameBoard[2]) {
@@ -184,7 +186,7 @@ function checkWinner() {
 }
 
 function winnerStreakEnd() {
-    console.log(winnerStreak)
+    // console.log(winnerStreak)
     if (winnerStreak > Math.min(...scoresArr)){
         console.log(`${winnerStreak} is a new high score! Please enter your name`)
         // usernameForm.style.display = 'block'
@@ -195,6 +197,11 @@ function winnerStreakEnd() {
 function saveUsername(event) {
     event.preventDefault()
     username = initialsForm.value
+
+    let scoreCard = document.createElement('li')
+    scoreCard.innerHTML = `<h2>${username} ... ${winnerStreak} </h2>`
+
+    scoresList.appendChild(scoreCard)
 }
 function newHighScore(){
     
@@ -212,7 +219,7 @@ function newHighScore(){
 }
 
 function getHighScores() {
-    scoresList.innerHTML = ''
+    scoresList.innerHTML = '<h4>LEADER BOARD</h4>'
     axios.get('/scores')
     .then(res => {
         // console.log(res.data)
@@ -221,6 +228,11 @@ function getHighScores() {
             scoresArr.push(res.data[i])
             createScoreLine(res.data[i])
         }
+
+    let scoreCard = document.createElement('li')
+    scoreCard.innerHTML = `<h3>----------</h3>`
+
+    scoresList.appendChild(scoreCard)
     })
 }
 

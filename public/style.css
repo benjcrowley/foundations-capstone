@@ -126,20 +126,21 @@ line-height: 75px;
 color: #000000;
 
 }
-.leader-board {
-    display: grid;
 
-/* position: absolute; */
-width: 122px;
-height: 47px;
-/* left: 975px;
-top: 124px; */
+aside {
+    /* display: grid; */
+
+position: absolute;
+width: 255px;
+height: 40px;
+left: 945px;
+top: 105px;
 
 font-family: 'Raleway';
 font-style: normal;
 font-weight: 400;
-font-size: 32px;
-line-height: 47px;
+font-size: 20px;
+line-height: 32px;
 
 
 
@@ -150,6 +151,17 @@ li {
     list-style: none;
 }
 
-/* .username {
-    display: none;
-} */
+.username {
+    font-family: Raleway;
+font-size: 30px;
+font-weight: 400;
+line-height: 35px;
+letter-spacing: 0em;
+text-align: left;
+
+position: absolute;
+width: 303px;
+height: 60px;
+left: 770px;
+top: 11px;
+}
