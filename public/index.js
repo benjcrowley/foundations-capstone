@@ -1,3 +1,4 @@
+
 const ticSquare = document.querySelector(".game-board")
 const startBtn = document.querySelector(".start")
 const tic1 = document.getElementById('left1')
@@ -12,6 +13,7 @@ const tic9 = document.getElementById('right3')
 const scoresList = document.querySelector('.scores-list')
 const usernameForm = document.querySelector('.username')
 const initialsForm = document.getElementById('initials')
+
 let scoresArr = []
 let pickedSqures = []
 let chosen = []
@@ -59,7 +61,12 @@ function startTicTacToeGame () {
     tic7.innerHTML = ''
     tic8.innerHTML = ''
     tic9.innerHTML = ''
-    alert(`${username} starts the game`)
+    // alert(`${username} starts the game`)
+    Swal.fire(
+        'New Game',
+        'Try and get a new high score!'
+    )
+
     
 }
     // Functionality of the squares, essentially marking your space.
@@ -70,7 +77,7 @@ function markX(e) {
         console.log(possibleMoves)
 
         if (chosen.includes(e.target.id)){
-            alert('that square is already chosen')
+            Swal.fire('that square is already chosen')
         } else{
             chosen.push(e.target.id)
 
@@ -85,21 +92,23 @@ function markX(e) {
                 XwinCount++
                 OwinCount = 0
                 console.log(`win count is: ${XwinCount}`)
-                document.getElementsByTagName('h2').innerHTML = `<h2>${username} ... ${XwinCount} </h2>`
-                setTimeout(function() { alert(`${winner} won this round`); }, 300); 
-                setTimeout(function() {startTicTacToeGame()}, 2000)
+                document.getElementById('current').innerHTML = `<h2>${username} ... ${XwinCount} </h2>`
+                // setTimeout(function() { alert(`${winner} won this round`); }, 300); 
+                Swal.fire(`you have won ${XwinCount} in a row`)
+
+                setTimeout(function() {startTicTacToeGame()}, 2500)
             } else if (winner === 'draw') {
                 winnerStreak = XwinCount
                 winnerStreakEnd()
             XwinCount = 0
             OwinCount = 0
         
-            setTimeout(function() { alert(`it was a draw, reset the scores`); }, 300);
+            setTimeout(function() { Swal.fire(`it was a draw, reset the scores`); }, 300);
             setTimeout(function() {startTicTacToeGame()}, 2000)
             } else{
 
                 //after you choose, the computer will choose a square
-                setTimeout(function() {Ochoose()}, 2000)
+                setTimeout(function() {Ochoose()}, 500)
             }
             
         }
@@ -131,7 +140,7 @@ function markX(e) {
                 winnerStreak = XwinCount
                 winnerStreakEnd()
                 XwinCount = 0
-                setTimeout(function() { alert(`${winner} won this round`); }, 300);
+                setTimeout(function() { Swal.fire(`${winner} won this round`); }, 300);
                 setTimeout(function() {startTicTacToeGame()}, 2000)
             } else if (winner === 'draw') {
                     winnerStreak = XwinCount
@@ -139,7 +148,7 @@ function markX(e) {
                 XwinCount = 0
                 OwinCount = 0
             
-                setTimeout(function() { alert(`it was a draw, reset the scores`); }, 300);
+                setTimeout(function() { Swal.fire(`it was a draw, reset the scores`); }, 300);
                 setTimeout(function() {startTicTacToeGame()}, 2000)
             }
         }
@@ -198,10 +207,20 @@ function saveUsername(event) {
     event.preventDefault()
     username = initialsForm.value
 
+    if(username != ''){
+  
     let scoreCard = document.createElement('li')
-    scoreCard.innerHTML = `<h2>${username} ... ${winnerStreak} </h2>`
+    scoreCard.innerHTML = `<h3>Current Streak</h3>`
 
     scoresList.appendChild(scoreCard)
+    scoreCard.innerHTML = `<h2 id="current" >${username} ... ${winnerStreak} </h2>`
+
+    scoresList.appendChild(scoreCard)
+        usernameForm.style.display = 'none'
+        setTimeout(function() {startTicTacToeGame()}, 500)
+    } else {
+        Swal.fire('Please enter a name')
+    }
 }
 function newHighScore(){
     
@@ -247,5 +266,5 @@ function createScoreLine(score) {
 
 }
 usernameForm.addEventListener('submit', saveUsername)
-startBtn.addEventListener('click', startTicTacToeGame)
+// startBtn.addEventListener('click', startTicTacToeGame)
 getHighScores()

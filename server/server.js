@@ -15,6 +15,7 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
     }
 })
 
+
 app.use(express.json())
 
 // endpoints to serve the files
@@ -27,6 +28,8 @@ app.get('/styles', (req,res) => {
 app.get('/', (req,res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'))
 })
+
+
 
 
 
