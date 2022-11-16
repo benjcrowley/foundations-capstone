@@ -205,7 +205,7 @@ function winnerStreakEnd() {
 }
 function saveUsername(event) {
     event.preventDefault()
-    username = initialsForm.value
+    username = initialsForm.value.toUpperCase()
 
     if(username != ''){
   
